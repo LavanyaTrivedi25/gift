@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Pranjul</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #fbeec1, #c9cba3);
+      font-family: 'Georgia', serif;
+      color: #2c2c2c;
+      text-align: center;
+      padding: 50px;
+      overflow-x: hidden;
+    }
+    .card {
+      background: #fffaf0;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      max-width: 700px;
+      margin: auto;
+      position: relative;
+    }
+    h1 {
+      color: #a0522d;
+      font-size: 2.8rem;
+    }
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+    .gift {
+      margin-top: 25px;
+      font-size: 1rem;
+      font-style: italic;
+    }
+    .footer {
+      margin-top: 35px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .retro-img {
+      width: 60px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .decor-top, .decor-bottom {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    /* Blinking animation for gramophone */
+    #gramophone {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0% { filter: brightness(1); }
+      50% { filter: brightness(2); }
+      100% { filter: brightness(1); }
+    }
+
+    /* Falling emojis */
+    .emoji {
+      position: fixed;
+      top: -50px;
+      font-size: 30px;
+      animation: fall 4s linear forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎶 Background Music -->
+   <audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bg-music');
+
+    // Try to autoplay after small delay (to bypass block)
+    setTimeout(() => {
+      music.play().catch(() => {
+        // If blocked, wait for any click
+        document.body.addEventListener('click', () => music.play(), { once: true });
+      });
+    }, 200);
+  });
+</script>
+
+
+
+  <!-- 🎨 Top Decorative Images -->
+  <div class="decor-top">
+    <img id="gramophone" src="https://cdn-icons-png.flaticon.com/128/1940/1940973.png" class="retro-img" alt="Gramophone" title="Click me!" />
+    <p style="font-style: italic; font-size: 0.95rem; color: #7a5c2c; margin-top: -20px; margin-bottom: 20px; margin-left: -130px;">
+  🔔 Tap the gramophone!
+    </p>
+
+    <img src="https://cdn-icons-png.flaticon.com/128/2735/2735498.png" class="retro-img" alt="Cassette" />
+    <img src="https://cdn-icons-png.flaticon.com/128/1834/1834342.png" class="retro-img" alt="Vinyl Record" />
+    <img src="https://cdn-icons-png.flaticon.com/128/12715/12715907.png" class="retro-img" alt="Old Radio" />
+  </div>
+
+  <div class="card">
+    <h1>🎉 Happy Birthday, Pranjul! 🎂</h1>
+    <p>
+      You're officially another year older — and somehow even more ancient 😄<br/><br/>
+
+      Jokes aside, I just wanted to wish you an amazing birthday filled with good food, peace of mind, and yes — those classic old songs you never stop humming 🎶<br/><br/>
+
+      It’s always cool having a friend who vibes with the past — you make even retro feel fresh. Thanks for being a solid friend and a cool support.
+    </p>
+
+    <div class="footer">
+      — Your best friend, <br/> Aditi
+    </div>
+  </div>
+
+  <!-- 🎨 Bottom Decorative Images -->
+  <div class="decor-bottom">
+    <img src="https://cdn-icons-png.flaticon.com/128/1022/1022965.png" class="retro-img" alt="Walkman" />
+    <img src="https://cdn-icons-png.flaticon.com/128/2876/2876445.png" class="retro-img" alt="Speaker" />
+    <img src="https://cdn-icons-png.flaticon.com/128/4787/4787614.png" class="retro-img" alt="Mic" />
+  </div>
+
+  <!-- 💫 JavaScript for falling emojis -->
+   <script>
+  const gramophone = document.getElementById("gramophone");
+  const emojis = ["🎈", "💖", "✨", "🎊", "🥳", "🎉", "🎀", "🎂"];
+  let raining = false;
+
+  gramophone.addEventListener("click", () => {
+    if (raining) return; // Prevent multiple intervals
+    raining = true;
+
+    setInterval(() => {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.fontSize = (Math.random() * 20 + 20) + "px";
+      emoji.style.animationDelay = Math.random() * 1.5 + "s";
+      document.body.appendChild(emoji);
+
+      setTimeout(() => emoji.remove(), 4000); // Remove after animation
+    }, 100); // 👈 New emoji every 100ms (adjust as needed)
+  });
+</script>
+
+</body>
+</html>
